@@ -692,6 +692,23 @@ func setGoogleAnalytics(c *gin.Context) {
 	model.Conf.Save()
 }
 
+func setNetworkServeTLS(c *gin.Context) {
+	ret := gulu.Ret.NewResult()
+	defer c.JSON(http.StatusOK, ret)
+
+	arg, ok := util.JsonArg(c, ret)
+	if !ok {
+		return
+	}
+
+	networkServeTLS := arg["networkServeTLS"].(bool)
+	model.Conf.System.NetworkServeTLS = networkServeTLS
+	model.Conf.Save()
+
+	util.PushMsg(model.Conf.Language(42), 1000*15)
+	time.Sleep(time.Second * 3)
+}
+
 func setAutoLaunch(c *gin.Context) {
 	ret := gulu.Ret.NewResult()
 	defer c.JSON(http.StatusOK, ret)

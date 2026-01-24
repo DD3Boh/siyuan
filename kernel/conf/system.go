@@ -36,8 +36,9 @@ type System struct {
 	ConfDir      string `json:"confDir"`
 	DataDir      string `json:"dataDir"`
 
-	NetworkServe bool          `json:"networkServe"` // 是否开启网络伺服
-	NetworkProxy *NetworkProxy `json:"networkProxy"`
+	NetworkServe    bool          `json:"networkServe"`    // 是否开启网络伺服
+	NetworkServeTLS bool          `json:"networkServeTLS"` // 是否开启 HTTPS 网络伺服
+	NetworkProxy    *NetworkProxy `json:"networkProxy"`
 
 	DisableGoogleAnalytics bool `json:"disableGoogleAnalytics"`
 	DownloadInstallPkg     bool `json:"downloadInstallPkg"`
